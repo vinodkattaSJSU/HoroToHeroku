@@ -30,7 +30,7 @@ app.use(session({
 
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 
 //__dirname is the name of the directory that the currently executing script resides in.
 app.set('views', __dirname + '/views');
