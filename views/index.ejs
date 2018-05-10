@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HORO</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="stylesheets/assets/img/favicon.ico" type="image/x-icon">
+
+    <!-- Font awesome -->
+    <link href="stylesheets/assets/css/font-awesome.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="stylesheets/assets/css/bootstrap.css" rel="stylesheet">
+    <!-- Slick slider -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/assets/css/slick.css">
+    <!-- Theme color -->
+    <link id="switcher" href="stylesheets/assets/css/theme-color/default-theme.css" rel="stylesheet">
+
+    <!-- Main style sheet -->
+    <link href="stylesheets/assets/css/style.css" rel="stylesheet">
+
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,700' rel='stylesheet'
+          type='text/css'>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+    <![endif]-->
+
+</head>
+<body ng-app="indexPage">
+
+<!--START SCROLL TOP BUTTON -->
+<a class="scrollToTop" href="#">
+    <i class="fa fa-angle-up"></i>
+</a>
+<!-- END SCROLL TOP BUTTON -->
+
+<!-- Start header  -->
+<header id="mu-header" ng-controller="loginSiginup">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right main-nav">
+            <li><a href="#signup" role="button" data-toggle="modal">Sign Up</a></li>
+            <li><a href="#login" role="button" data-toggle="modal">Log In</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right main-nav">
+
+
+        </ul>
+    </div>
+
+
+    <div id="login" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:500px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 id="myModalLabel">Log In</h3>
+                </div>
+                <div class="modal-body" ng-controller="signin">
+                    <form>
+                        <input type="username" ng-model="username" required name="username" id="username"
+                               placeholder="User Name" class="form form-control" style=" height:40px"><br>
+                        <input type="password" type="password" required ng-model="password" name="password"
+                               id="password" placeholder="Password" class="form form-control" style="height:40px"><br>
+                        <input style="height:40px;background-color:rgb(255,100,100);color:white;font-weight:bold"
+                               ng-click="signin()" type="submit" value="Log in" class="form form-control">
+                    </form>
+                    <br>
+                    <b><a stlye="float:rightx">Forgot Password ?</a></b>
+                    <div class="modal-footer row">
+
+                        <br>
+                        <div class="alert alert-danger" ng-show="invalid_login">
+                            <strong>Invalid username or Password</strong>
+                        </div>
+                        <div class="alert alert-success" ng-show="success_login">
+                            <strong>Success!</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="signup" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:500px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 id="myModalLabel">Sign Up </h3>
+                </div>
+                <div class="modal-body" ng-controller="signup">
+                    <form>
+                        <input type="text" placeholder="First Name" required ng-model="first_name" name="first_name"
+                               id="first_name" class="form form-control" style=" height:40px"><br>
+                        <input type="text" placeholder="Last Name" required ng-model="last_name" name="last_name"
+                               id="last_name" class="form form-control" style=" height:40px"><br>
+                        <input type="text" placeholder="UserName" required ng-model="username" name="username"
+                               id="username" class="form form-control" style=" height:40px"><br>
+                        <input type="text" placeholder="Gender" required ng-model="gender" name="email" id="gender"
+                               class="form form-control" style=" height:40px"><br>
+                        <input type="text" placeholder="City" required ng-model="city" name="email" id="city"
+                               class="form form-control" style=" height:40px"><br>
+                        <input type="password" placeholder="Password" required ng-model="inputPassword" name="password"
+                               id="password" class="form form-control" style="height:40px"><br>
+                        <input type="tel" placeholder="Mobile" required ng-model="mobile" name="mobile"
+                               id="mobile" class="form form-control" style="height:40px"><br>
+                        <label>Birthday</label>
+                        <input type="date" ng-model="dob" name="dob" id="dob" required placeholder="Date of Birth"
+                               class="form form-control" style="height:40px"><br>
+
+                        <!-- For Buy or Auction -->
+                        <div class="form-group">
+                            <label class="control-label" for="txtPerformanceType" ng-click="RadioButtonRoleClick()">Role
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+                            <input type="radio" name="rdoCriteria" value="1" ng-model="Attendee" checked/> Attendee
+                            &nbsp;&nbsp;
+                            <input type="radio" name="rdoCriteria" value="0" ng-model="Attendee"> Instructor
+                        </div>
+                        <p>By signing up, I agree to HORO's Terms of Service, Nondiscrimination Policy,
+                            Privacy Policy,Host Guarantee Terms.</p>
+                        <input ng-click="register()"
+                               style="height:40px;background-color:rgb(255,100,100);color:white;font-weight:bold"
+                               type="submit" value="Sign up" class="form form-control">
+                        <br>
+                    </form>
+                    <div class="modal-footer row">
+
+                        <a href="#myModal" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Already
+                            have an HORO account?</a>
+
+                        <div class="alert alert-danger" ng-hide="invalid_register">
+                            <strong>Passwards do not match</strong>
+                        </div>
+                        <div class="alert alert-success" ng-hide="valid_register">
+                            <strong>Account Has Been Created Please Proceed To LOGIN!</strong>
+                        </div>
+                        <div class="alert alert-danger" ng-hide="already_exists">
+                            <strong>This user already exists!</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</header>
+<!-- End header  -->
+<!-- Start menu -->
+<section id="mu-menu">
+    <nav class="navbar navbar-default" role="navigation" ng-app="indexPage">
+        <div class="container" ng-controller="viewProfile">
+            <div class="navbar-header">
+                <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- LOGO -->
+                <!-- TEXT BASED LOGO -->
+                <a class="navbar-brand" href="index"><i class="fa fa-university"></i><span>HORO</span></a>
+                <!-- IMG BASED LOGO  -->
+                <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="logo"></a> -->
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="course">Courses</a></li>
+                    <li><a href= '#about-section' >About Us</a> </li>
+                    <li ng-show="sessionActive"><a href="profile">{{sessionUserName}}</a></li>
+
+                    <!--<li><a href="#" id="mu-search-icon"><i class="fa fa-search"></i></a></li>-->
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+</section>
+<!-- End menu -->
+<!-- Start search box -->
+<div id="mu-search">
+    <div class="mu-search-area">
+        <button class="mu-search-close"><span class="fa fa-close"></span></button>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="mu-search-form">
+                        <input type="search" placeholder="Type Your Keyword(s) & Hit Enter">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- End search box -->
+<!-- Start Slider -->
+<section id="mu-slider">
+    <!-- Start single slider item -->
+   <!-- <div class="mu-slider-single">
+        <div class="mu-slider-img">
+            <figure>
+                <img src="stylesheets/assets/img/slider/c1.jpg" alt="img">
+            </figure>
+        </div>
+        &lt;!&ndash; <div class="mu-slider-content">
+             <h4>Welcome To HORO</h4>
+             <span></span>
+             <h2>Learn new skills.</h2>
+         </div>&ndash;&gt;
+    </div>-->
+    <!-- Start single slider item -->
+    <div class="mu-slider-single">
+        <div class="mu-slider-img">
+            <figure>
+                <img src="stylesheets/assets/img/slider/c1.jpg" alt="img">
+            </figure>
+        </div>
+        <div class="mu-slider-content">
+            <h4>Welcome to HORO !</h4>
+            <span></span>
+            <h2>Learn ,Teach ,Contribute.</h2>
+        </div>
+    </div>
+    <!-- Start single slider item -->
+</section>
+<!-- End Slider -->
+<!-- Start service  -->
+<section id="mu-service">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="mu-service-area">
+                    <!-- Start single service -->
+                    <div class="mu-service-single">
+                        <span class="fa fa-book"></span>
+                        <h3>Join a Course</h3>
+                        <p>Get ready for the job market.</p>
+                    </div>
+                    <!-- Start single service -->
+                    <!-- Start single service -->
+                    <div class="mu-service-single">
+                        <span class="fa fa-users"></span>
+                        <h3>Become a Coach</h3>
+                        <p>Help teach people in need.<br></p>
+                    </div>
+                    <!-- Start single service -->
+                    <!-- Start single service -->
+                    <div class="mu-service-single">
+                        <span class="fa fa-table"></span>
+                        <h3>Contribute</h3>
+                        <p>Find ways to join our mission.</p>
+                    </div>
+                    <!-- Start single service -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End service  -->
+
+<!-- Start about us -->
+<section id="mu-about-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-about-us-area">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="mu-about-us-left">
+                                <!-- Start Title -->
+                                <div class="mu-title">
+                                    <h2><a id="about-section">About Us</a></h2>
+                                </div>
+                                <!-- End Title -->
+                                <p>We are an unique learning platform specially developed for homeless people and poor
+                                    families
+                                    to help them learn new industrial skills, get jobs and recover from their financial
+                                    crisis. We strongly believe that the opportunity to
+                                    learn is the most effective way to help homeless people start a new life.</p>
+                                <ul>
+                                    <li>1. Homeless people</li>
+                                    <li>2. Experts</li>
+                                    <li>3. NGOs</li>
+                                </ul>
+                                Go Ahead and <a href="../#/signup"><u style="color: #00B7FF">Sign up </u></a>now !
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="mu-about-us-right">
+                                <!--<a id="mu-abtus-video" href="https://www.youtube.com/embed/wnw4eBMNhB4"-->
+                                   <!--target="mutube-video">-->
+                                    <!--<img src="assets/img/about-us.jpg" alt="img">-->
+                                <!--</a>-->
+
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/wnw4eBMNhB4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End about us -->
+
+<!-- Start about us counter -->
+<section id="mu-abtus-counter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-abtus-counter-area">
+                    <div class="row">
+                        <!-- Start counter item -->
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="mu-abtus-counter-single">
+                                <span class="fa fa-book"></span>
+                                <h4 class="counter">568</h4>
+                                <p>Subjects</p>
+                            </div>
+                        </div>
+                        <!-- End counter item -->
+                        <!-- Start counter item -->
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="mu-abtus-counter-single">
+                                <span class="fa fa-users"></span>
+                                <h4 class="counter">3500</h4>
+                                <p>Students</p>
+                            </div>
+                        </div>
+                        <!-- End counter item -->
+                        <!-- Start counter item -->
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="mu-abtus-counter-single">
+                                <span class="fa fa-flask"></span>
+                                <h4 class="counter">65</h4>
+                                <p>Modern Lab</p>
+                            </div>
+                        </div>
+                        <!-- End counter item -->
+                        <!-- Start counter item -->
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="mu-abtus-counter-single no-border">
+                                <span class="fa fa-user-secret"></span>
+                                <h4 class="counter">250</h4>
+                                <p>Teachers</p>
+                            </div>
+                        </div>
+                        <!-- End counter item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End about us counter -->
+
+<!-- Start features section -->
+<section id="mu-features">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="mu-features-area">
+                    <!-- Start Title -->
+                    <div class="mu-title">
+                        <h2>Our Features</h2>
+
+                    </div>
+                    <!-- End Title -->
+                    <!-- Start features content -->
+                    <div class="mu-features-content">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4  col-sm-6">
+                                <div class="mu-single-feature">
+                                    <span class="fa fa-book"></span>
+                                    <h4>Skill Focused Courses</h4>
+                                    <h5>Our courses prepare you for the modern industry requirements by teaching you the
+                                        right skills</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="mu-single-feature">
+                                    <span class="fa fa-users"></span>
+                                    <h4>Industry Expert Coaches</h4>
+                                    <h5>At Horo, you learn from people who are best in their craft</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="mu-single-feature">
+                                    <span class="fa fa-laptop"></span>
+                                    <h4>In Person Training</h4>
+                                    <h5>All our trainings are classroom and hands on trainings where you get an
+                                        in-person coaching fromt the coaches</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="mu-single-feature">
+                                    <span class="fa fa-microphone"></span>
+                                    <h4>Job Search Help</h4>
+                                    <h5>We help you find the right job for your skill set at the best place in town with
+                                        the best pay</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="mu-single-feature">
+                                    <span class="fa fa-film"></span>
+                                    <h4>Video Recorded Lessons</h4>
+                                    <h5>If you miss a lesson for some reason, dont worry, you can always watch the video
+                                        recorded lectures to catch up</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="mu-single-feature">
+                                    <span class="fa fa-certificate"></span>
+                                    <h4>Professional Certificate</h4>
+                                    <h5>For every successful course you are given a professional certificate which you
+                                        can proudly carry during your interviews.</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End features content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End features section -->
+
+<!-- Start latest course section -->
+<section id="mu-latest-courses">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="mu-latest-courses-area">
+                    <!-- Start Title -->
+                    <div class="mu-title">
+                        <h2>Latest Courses</h2>
+                    </div>
+                    <!-- End Title -->
+                    <!-- Start latest course content -->
+                    <div id="mu-latest-course-slide" class="mu-latest-courses-content">
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="mu-latest-course-single">
+                                <figure class="mu-latest-course-img">
+                                    <a href="#"><img src="stylesheets/assets/img/slider/c1.jpg" alt="img"></a>
+                                    <figcaption class="mu-latest-course-imgcaption">
+                                        <a href="#">Painting Course</a>
+                                        <span><i class="fa fa-clock-o"></i>90Days</span>
+                                    </figcaption>
+                                </figure>
+                                <div class="mu-latest-course-single-content">
+                                    <h4><a href="#">Michael Wolfhard</a></h4>
+                                    <p>This painting course is about what can be achieved with acrylic painting when you
+                                        apply my 7 painting principles to your painting.</p>
+                                    <div class="mu-latest-course-single-contbottom">
+                                        <a class="mu-course-details" href="#">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="mu-latest-course-single">
+                                <figure class="mu-latest-course-img">
+                                    <a href="#"><img src="stylesheets/assets/img/slider/c1.jpg" alt="img"></a>
+                                    <figcaption class="mu-latest-course-imgcaption">
+                                        <a href="#">Banking Course</a>
+                                        <span><i class="fa fa-clock-o"></i>50Days</span>
+                                    </figcaption>
+                                </figure>
+                                <div class="mu-latest-course-single-content">
+                                    <h4><a href="#">Spandana</a></h4>
+                                    <p>This banking course is about what can be achieved with acrylic banking when you
+                                        apply my 7 banking principles.</p>
+                                    <div class="mu-latest-course-single-contbottom">
+                                        <a class="mu-course-details" href="#">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="mu-latest-course-single">
+                                <figure class="mu-latest-course-img">
+                                    <a href="#"><img src="stylesheets/assets/img/slider/c1.jpg" alt="img"></a>
+                                    <figcaption class="mu-latest-course-imgcaption">
+                                        <a href="#">Banking Course</a>
+                                        <span><i class="fa fa-clock-o"></i>50Days</span>
+                                    </figcaption>
+                                </figure>
+                                <div class="mu-latest-course-single-content">
+                                    <h4><a href="#">Spandana</a></h4>
+                                    <p>This banking course is about what can be achieved with acrylic banking when you
+                                        apply my 7 banking principles.</p>
+                                    <div class="mu-latest-course-single-contbottom">
+                                        <a class="mu-course-details" href="#">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="mu-latest-course-single">
+                                <figure class="mu-latest-course-img">
+                                    <a href="#"><img src="stylesheets/assets/img/slider/c1.jpg" alt="img"></a>
+                                    <figcaption class="mu-latest-course-imgcaption">
+                                        <a href="#">Banking Course</a>
+                                        <span><i class="fa fa-clock-o"></i>50Days</span>
+                                    </figcaption>
+                                </figure>
+                                <div class="mu-latest-course-single-content">
+                                    <h4><a href="#">Spandana</a></h4>
+                                    <p>This banking course is about what can be achieved with acrylic banking when you
+                                        apply my 7 banking principles.</p>
+                                    <div class="mu-latest-course-single-contbottom">
+                                        <a class="mu-course-details" href="#">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="mu-latest-course-single">
+                                <figure class="mu-latest-course-img">
+                                    <a href="#"><img src="stylesheets/assets/img/slider/c1.jpg" alt="img"></a>
+                                    <figcaption class="mu-latest-course-imgcaption">
+                                        <a href="#">Banking Course</a>
+                                        <span><i class="fa fa-clock-o"></i>50Days</span>
+                                    </figcaption>
+                                </figure>
+                                <div class="mu-latest-course-single-content">
+                                    <h4><a href="#">Spandana</a></h4>
+                                    <p>This banking course is about what can be achieved with acrylic banking when you
+                                        apply my 7 banking principles.</p>
+                                    <div class="mu-latest-course-single-contbottom">
+                                        <a class="mu-course-details" href="#">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <!-- End latest course content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End latest course section -->
+
+<!-- Start our teacher -->
+<section id="mu-our-teacher">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-our-teacher-area">
+                    <!-- begain title -->
+                    <div class="mu-title">
+                        <h2>Our Teachers</h2>
+
+                    </div>
+                    <!-- end title -->
+                    <!-- begain our teacher content -->
+                    <div class="mu-our-teacher-content">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3  col-sm-6">
+                                <div class="mu-our-teacher-single">
+                                    <figure class="mu-our-teacher-img">
+                                        <img src="stylesheets/assets/img/teachers/cvuppalapati.jpg" alt="teacher img" height="250px">
+                                        <div class="mu-our-teacher-social">
+                                            <a href="#"><span class="fa fa-facebook"></span></a>
+                                            <a href="#"><span class="fa fa-twitter"></span></a>
+                                            <a href="#"><span class="fa fa-linkedin"></span></a>
+                                            <a href="#"><span class="fa fa-google-plus"></span></a>
+                                        </div>
+                                    </figure>
+                                    <div class="mu-ourteacher-single-content">
+                                        <h4>Chandra Vuppalapati</h4>
+                                        <span>Web UI Coach</span>
+                                        <p>Teaches awesome technologies for web UI design. Deals with full stack development.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="mu-our-teacher-single">
+                                    <figure class="mu-our-teacher-img">
+                                        <img src="stylesheets/assets/img/teachers/dayna.png" alt="teacher img">
+                                        <div class="mu-our-teacher-social">
+                                            <a href="#"><span class="fa fa-facebook"></span></a>
+                                            <a href="#"><span class="fa fa-twitter"></span></a>
+                                            <a href="#"><span class="fa fa-linkedin"></span></a>
+                                            <a href="#"><span class="fa fa-google-plus"></span></a>
+                                        </div>
+                                    </figure>
+                                    <div class="mu-ourteacher-single-content">
+                                        <h4>Dayna McKenzie</h4>
+                                        <span>Baking Coach</span>
+                                        <p>After running her own business for over a decade, Dayna is here to coach you
+                                            about her best skill, baking. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="mu-our-teacher-single">
+                                    <figure class="mu-our-teacher-img">
+                                        <img src="stylesheets/assets/img/teachers/mathew.jpg" alt="teacher img">
+                                        <div class="mu-our-teacher-social">
+                                            <a href="#"><span class="fa fa-facebook"></span></a>
+                                            <a href="#"><span class="fa fa-twitter"></span></a>
+                                            <a href="#"><span class="fa fa-linkedin"></span></a>
+                                            <a href="#"><span class="fa fa-google-plus"></span></a>
+                                        </div>
+                                    </figure>
+                                    <div class="mu-ourteacher-single-content">
+                                        <h4>John Harmon</h4>
+                                        <span>Plumbing Coach</span>
+                                        <p>John runs his own service business in the plumbing industry. And he does it
+                                            best. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="mu-our-teacher-single">
+                                    <figure class="mu-our-teacher-img">
+                                        <img src="stylesheets/assets/img/teachers/james.jpg" alt="teacher img">
+                                        <div class="mu-our-teacher-social">
+                                            <a href="#"><span class="fa fa-facebook"></span></a>
+                                            <a href="#"><span class="fa fa-twitter"></span></a>
+                                            <a href="#"><span class="fa fa-linkedin"></span></a>
+                                            <a href="#"><span class="fa fa-google-plus"></span></a>
+                                        </div>
+                                    </figure>
+                                    <div class="mu-ourteacher-single-content">
+                                        <h4>Michael Wolfhard </h4>
+                                        <span>Painting Coach</span>
+                                        <p>Michael's work has been recognized internationally for various reasons. He is
+                                            here to teach you why and how. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End our teacher content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End our teacher -->
+
+<!-- Start footer -->
+<footer id="mu-footer">
+    <!-- start footer top -->
+    <div class="mu-footer-top">
+        <div class="container">
+            <div class="mu-footer-top-area">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="mu-footer-widget">
+                            <h4>Information</h4>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="">Features</a></li>
+                                <li><a href="">Course</a></li>
+                                <li><a href="">Event</a></li>
+                                <li><a href="">Sitemap</a></li>
+                                <li><a href="">Term Of Use</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="mu-footer-widget">
+                            <h4>Student Help</h4>
+                            <ul>
+                                <li><a href="">Get Started</a></li>
+                                <li><a href="#">My Questions</a></li>
+                                <li><a href="">Latest Course</a></li>
+                                <li><a href="">Academic News</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer top -->
+    <!-- start footer bottom -->
+
+    <!-- end footer bottom -->
+</footer>
+<!-- End footer -->
+
+<!-- jQuery library -->
+<script src="stylesheets/assets/js/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="stylesheets/assets/js/bootstrap.js"></script>
+<!-- Slick slider -->
+<script type="text/javascript" src="stylesheets/assets/js/slick.js"></script>
+<!-- Counter -->
+<script type="text/javascript" src="stylesheets/assets/js/waypoints.js"></script>
+<script type="text/javascript" src="stylesheets/assets/js/jquery.counterup.js"></script>
+
+<!-- Custom js -->
+<script src="stylesheets/assets/js/custom.js"></script>
+
+
+<script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+<script src="/index.js"></script>
+<script src="/signin/signin.js"></script>
+<script src="/signup/signup.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.mu-latest-courses-content').carousel({
+            interval: 1200
+        })
+    });
+</script>
+
+</body>
+</html>
+<!-- End search box -->
+<!-- End search box -->
